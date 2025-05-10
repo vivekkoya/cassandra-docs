@@ -7,11 +7,23 @@
 import { themes as prismThemes } from "prism-react-renderer";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
+plugins: [
+  [
+    "@orama/plugin-docusaurus-v3",
+    {
+      searchbox: {
+        placeholder: "Search...",
+      },
+      searchButton: {
+        text: "Click here to search...",
+      },
+    },
+  ],
+];
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "Apache Cassandra",
+  tagline: "Manage massive data, fast, without losing sleep",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -76,34 +88,34 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "My Site",
+        title: "Apache Cassandra",
         logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+          alt: "Apache Cassandra Logo",
+          src: "img/ApacheCassandra.svg",
         },
         items: [
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
-            position: "center",
+            position: "left",
             label: "Get Started",
           },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
-            position: "center",
+            position: "left",
             label: "Documentation",
           },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
-            position: "center",
+            position: "left",
             label: "Community",
           },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
-            position: "center",
+            position: "left",
             label: "Learn",
           },
           { to: "/blog", label: "Blog", position: "left" },
