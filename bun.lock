@@ -6,14 +6,15 @@
       "dependencies": {
         "@docusaurus/core": "3.7.0",
         "@docusaurus/preset-classic": "3.7.0",
-        "@mdx-js/react": "^3.0.0",
+        "@mdx-js/react": "^3.1.0",
         "@orama/plugin-docusaurus-v3": "^3.1.6",
         "@orama/searchbox": "^1.0.0-rc53",
         "@orama/wc-components": "^0.7.0",
-        "clsx": "^2.0.0",
-        "prism-react-renderer": "^2.3.0",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0",
+        "clsx": "^2.1.1",
+        "create-cloudflare": "^2.46.2",
+        "prism-react-renderer": "^2.4.1",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0",
       },
       "devDependencies": {
         "@docusaurus/module-type-aliases": "3.7.0",
@@ -957,6 +958,8 @@
     "core-util-is": ["core-util-is@1.0.3", "", {}, "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ=="],
 
     "cosmiconfig": ["cosmiconfig@8.3.6", "", { "dependencies": { "import-fresh": "^3.3.0", "js-yaml": "^4.1.0", "parse-json": "^5.2.0", "path-type": "^4.0.0" }, "peerDependencies": { "typescript": ">=4.9.5" }, "optionalPeers": ["typescript"] }, "sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA=="],
+
+    "create-cloudflare": ["create-cloudflare@2.46.2", "", { "bin": { "create-cloudflare": "dist/cli.js" } }, "sha512-J/LVTbnbWo/yMF3qUKMgpdNBU7TXb48LXzDHv1tccop51Y+bDreRmzafPSdCIkdWy8gf9kQuftnFo8Xy3VamhA=="],
 
     "cross-spawn": ["cross-spawn@7.0.6", "", { "dependencies": { "path-key": "^3.1.0", "shebang-command": "^2.0.0", "which": "^2.0.1" } }, "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA=="],
 
