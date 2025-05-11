@@ -1,0 +1,192 @@
+---
+sidebar_label: 'Quickstart'
+sidebar_position: 3
+id: part1
+---
+# Get Started with Apache Cassandra
+
+
+
+
+
+
+<!-- [openblock,inner inner--narrow] -->
+----
+
+<!-- [discrete] -->
+## Interested in getting started with Cassandra? Follow these instructions.
+
+<!-- [example] -->
+####
+
+<!-- [discrete] -->
+### STEP 1: GET CASSANDRA USING DOCKER
+
+You’ll need to have Docker Desktop for Mac, Docker Desktop for Windows, or similar software installed on your computer.
+
+Apache Cassandra is also available as a tarball or package xref:download.adoc[download].
+
+<!-- [source] -->
+--
+```bash
+docker pull cassandra:latest
+```
+--
+####
+
+<!-- [example] -->
+####
+
+<!-- [discrete] -->
+### STEP 2: START CASSANDRA
+
+A Docker network allows us to access the container's ports without exposing them on the host.
+
+<!-- [source] -->
+--
+docker network create cassandra
+```bash
+docker run --rm -d --name cassandra --hostname cassandra --network cassandra cassandra
+```
+--
+####
+// end example
+
+<!-- [example] -->
+####
+
+<!-- [discrete] -->
+### STEP 3: CREATE FILES
+
+The Cassandra Query Language (CQL) is very similar to SQL but suited for the JOINless structure of Cassandra.
+
+Create a file named data.cql and paste the following CQL script in it. This script will create a keyspace, the layer at which Cassandra replicates its data, a table to hold the data, and insert some data into that table:
+
+<!-- [source] -->
+--
+-- Create a keyspace
+```SQL
+CREATE KEYSPACE IF NOT EXISTS store WITH REPLICATION # { 'class' : 'SimpleStrategy', 'replication_factor' : '1' };
+
+-- Create a table
+CREATE TABLE IF NOT EXISTS store.shopping_cart (
+userid text PRIMARY KEY,
+item_count int,
+last_update_timestamp timestamp
+);
+```
+-- Insert some data
+```SQL
+INSERT INTO store.shopping_cart
+(userid, item_count, last_update_timestamp)
+VALUES ('9876', 2, toTimeStamp(now()));
+INSERT INTO store.shopping_cart
+(userid, item_count, last_update_timestamp)
+VALUES ('1234', 5, toTimeStamp(now()));
+```
+--
+####
+// end example
+
+<!-- [example] -->
+####
+
+<!-- [discrete] -->
+### STEP 4: LOAD DATA WITH CQLSH
+
+The CQL shell, or cqlsh, is one tool to use in interacting with the database. We'll use it to load some data into the database using the script you just saved.
+
+<!-- [source] -->
+--
+```bash
+docker run --rm --network cassandra -v "$(pwd)/data.cql:/scripts/data.cql" -e CQLSH_HOST#cassandra -e CQLSH_PORT#9042 -e CQLVERSION#3.4.6 nuvo/docker-cqlsh
+```
+--
+Note: The cassandra server itself (the first docker run command you ran) takes a few seconds to start up. The above command will throw an error if the server hasn't finished its init sequence yet, so give it a few seconds to spin up.
+####
+// end example
+
+<!-- [example] -->
+####
+
+<!-- [discrete] -->
+### STEP 5: INTERACTIVE CQLSH
+
+Much like an SQL shell, you can also of course use CQLSH to run CQL commands interactively.
+
+<!-- [source] -->
+--
+```bash
+docker run --rm -it --network cassandra nuvo/docker-cqlsh cqlsh cassandra 9042 --cqlversion#'3.4.5'
+```
+--
+
+This should get you a prompt like so:
+
+<!-- [source] -->
+--
+```bash
+Connected to Test Cluster at cassandra:9042.
+[cqlsh 5.0.1 | Cassandra 4.0.4 | CQL spec 3.4.5 | Native protocol v5]
+Use HELP for help.
+cqlsh>
+```
+--
+####
+// end example
+
+<!-- [example] -->
+####
+
+<!-- [discrete] -->
+### STEP 6: READ SOME DATA
+
+<!-- [source] -->
+--
+```SQL
+ SELECT * FROM store.shopping_cart;
+ ```
+--
+####
+// end example blogk
+
+<!-- [example] -->
+####
+<!-- [discrete] -->
+### STEP 7: WRITE SOME MORE DATA
+
+<!-- [source] -->
+--
+```SQL
+ INSERT INTO store.shopping_cart (userid, item_count) VALUES ('4567', 20);
+```
+--
+####
+// end example
+
+<!-- [example] -->
+####
+
+<!-- [discrete] -->
+### STEP 8: CLEAN UP
+
+<!-- [source] -->
+--
+```bash
+docker kill cassandra
+docker network rm cassandra
+```
+--
+**CONGRATULATIONS!**
+
+Hey, that wasn’t so hard, was it?
+
+To learn more, we suggest the following next steps:
+
+* Read through the xref:cassandra-basics.adoc[Cassandra Basics] to learn main concepts and how Cassandra works at a high level.
+* To understand Cassandra in more detail, head over to the https://cassandra.apache.org/doc/latest/[Docs].
+* Browse through the xref:case-studies.adoc[Case Studies] to learn how other users in our worldwide community are getting value out of Cassandra.
+
+####
+// end example blogk
+----

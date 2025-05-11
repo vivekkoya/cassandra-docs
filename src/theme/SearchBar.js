@@ -9,12 +9,15 @@ function search() {
     <>
       <OramaSearchButton
         size="medium"
-        colorScheme="dark"
+        colorScheme="system"
         themeConfig={{
           themeConfig: {
             colors: {
               dark: {
                 "--background-color-primary": "#231102",
+              },
+              light: {
+                "--background-color-primary": "#eeeeee",
               },
             },
           },
